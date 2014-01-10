@@ -95,7 +95,7 @@ class RangePartitioner[K <% Ordered[K]: ClassTag, V](
   extends Partitioner {
 
   // An array of upper bounds for the first (partitions - 1) partitions
-  private val rangeBounds: Array[K] = {
+  private lazy val rangeBounds: Array[K] = {
     if (partitions == 1) {
       Array()
     } else {
