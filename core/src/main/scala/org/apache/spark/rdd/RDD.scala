@@ -372,6 +372,15 @@ abstract class RDD[T: ClassTag](
   def ++(other: RDD[T]): RDD[T] = this.union(other)
 
   /**
+   * Return the intersection of this RDD and another one. The output will not contain any duplicate
+   * elements, even if the input RDDs did.
+   */
+  def intersection(other: RDD[T]): RDD[T] =
+    this.map(v => (v,null)).cogroup(other.map(v => (v,null)))
+        .filter(pair => pair._2._1.length > 0 && pair._2._2.length > 0)
+        .keys
+
+  /**
    * Return an RDD created by coalescing all elements within each partition into an array.
    */
   def glom(): RDD[Array[T]] = new GlommedRDD(this)
