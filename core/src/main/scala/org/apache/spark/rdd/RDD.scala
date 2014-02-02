@@ -377,7 +377,7 @@ abstract class RDD[T: ClassTag](
    */
   def intersection(other: RDD[T]): RDD[T] =
     this.map(v => (v,null)).cogroup(other.map(v => (v,null)))
-        .filter(pair => pair._2._1.length > 0 && pair._2._2.length > 0)
+        .filter { case (_, (leftGroup, rightGroup)) => leftGroup.nonEmpty && rightGroup.nonEmpty }
         .keys
 
   /**
