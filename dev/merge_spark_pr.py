@@ -96,8 +96,8 @@ def merge_pr(pr_num, target_ref):
   commits = run_cmd(['git', 'log', 'HEAD..%s' % pr_branch_name, 
     '--pretty=format:%h [%an] %s']).split("\n\n")
 
-  merge_message = "Merge pull request #%s from %s.\n\n%s\n\n%s" % (
-    pr_num, pr_repo_desc, title, body)
+  merge_message = "%s\n\n%s\n\nMerge pull request #%s from %s." % (
+    title, body, pr_num, pr_repo_desc)
   merge_message_parts = merge_message.split("\n\n")
   merge_message_flags = []
 
