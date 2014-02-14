@@ -19,7 +19,7 @@ You can access this interface by simply opening `http://<driver-node>:4040` in a
 If multiple SparkContexts are running on the same host, they will bind to succesive ports
 beginning with 4040 (4041, 4042, etc).
 
-Spark's Standlone Mode cluster manager also has its own 
+Spark's Standalone Mode cluster manager also has its own
 [web UI](spark-standalone.html#monitoring-and-logging). 
 
 Note that in both of these UIs, the tables are sortable by clicking their headers,
